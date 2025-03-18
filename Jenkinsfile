@@ -21,8 +21,16 @@ pipeline{
         }
         stage("deploy the application"){
             steps{
-                sh "java -jar target/spring_app_sak-0.0.1-SNAPSHOT.jar &"
+                sh "java -jar target/spring_app_sak-0.0.1-SNAPSHOT.jar"
             }
         }
+        stage("deploy the application") {
+            steps {
+                sh "java -jar target/spring_app_sak-0.0.1-SNAPSHOT.jar > app_output.log 2>&1 &"
+                sh "tail -f app_output.log"
+    }
+}
+
+        
     }
 }
