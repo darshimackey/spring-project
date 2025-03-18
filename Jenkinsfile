@@ -14,5 +14,10 @@ pipeline{
                 sh 'mvn clean package'
             }
         }
+        stage("stop existing application"){
+            steps{
+                sh "pkill -f 'spring_app_sak-0.0.1-SNAPSHOT.jar' || true"
+            }
+        }
     }
 }
